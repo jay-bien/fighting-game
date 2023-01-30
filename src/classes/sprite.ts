@@ -28,23 +28,24 @@ class Sprite{
 
     }
 
-    update( ctx: Context ): void{
-        this.draw( ctx );
-
-    }
-    move( canvas:HTMLCanvasElement, ctx: Context ):void{
-        const position ={x:this.x,y:this.y}
-        console.log({position} );
+    update( canvas:HTMLCanvasElement, ctx: Context ): void{
         if( this.height + this.y + this.velocity.y < canvas.height && this.y  + this.velocity.y > 0 ){
             this.y += this.velocity.y;
         }else {
-            this.velocity.y = -1 * this.velocity.x;
+            // this.velocity.y = -1 * this.velocity.x;
         }
         if( this.width + this.x + this.velocity.x < canvas.width && this.x  + this.velocity.x > 0 ){
             this.x += this.velocity.x;
         } else {
-            this.velocity.y = -1 * this.velocity.y;
+            // this.velocity.y = -1 * this.velocity.y;
         }
+        this.draw( ctx );
+
+    }
+    move(x: number, y: number):void{
+        this.velocity.x = x;
+        this.velocity.y = y;
+        
     }
 }
 
