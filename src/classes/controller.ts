@@ -15,23 +15,39 @@ class Controller{
 
     private attachKeyboardListeners( player_type: PlayerType ): void{
         document.addEventListener('keydown', (event:KeyboardEvent)=> {
+            event.preventDefault();
+
             if(player_type !== "player1" && player_type !== "player2") return;
 
             if(player_type === "player1"){
                 switch( event.key ){
-                    case "w": this.player.move(0, 1);
-                    case "a": this.player.move(-1, 0);
-                    case "s": this.player.move(0, -1);
-                    case "d": this.player.move(0, -1)
+                    case "w": this.player.moveUp();
+                    break;
+                    case "a": this.player.moveLeft();
+                    break;
+                    case "s": this.player.moveDown();
+                    break;
+                    case "d": this.player.moveRight();
+                    break;
+                    default:
+                        break;
                 }
+                
             } else{
+
                 switch( event.key ){
-                    case "ArrowUp": this.player.move(0, 1);
-                    case "ArrowLeft": this.player.move(-1, 0);
-                    case "ArrowDown": this.player.move(0, -1);
-                    case "ArrowRight": this.player.move(1, 0)
+                    case "ArrowUp": this.player.moveUp();
+                    break;
+                    case "ArrowLeft": this.player.moveLeft();
+                    break;
+                    case "ArrowDown": this.player.moveDown();
+                    break;
+                    case "ArrowRight": this.player.moveRight();
+                    break;
                 }
+
             }
+
         })
     }
 

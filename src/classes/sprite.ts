@@ -9,7 +9,7 @@ class Sprite{
     private width: number;
     private height: number;
     private polygon: number[];
-    private velocity: {x:number, y:number};
+    public velocity: {x:number, y:number};
     private gravity: number;
     constructor( arg: {x: number, y: number, width:number, height:number,  polygon:number[], velocity?:{x:number, y:number} }){
         this.x = arg.x;
@@ -17,7 +17,7 @@ class Sprite{
         this.width=arg.width;
         this.height=arg.height;
         this.polygon = arg.polygon;
-        this.velocity = arg.velocity || {x:1, y:1};
+        this.velocity = arg.velocity || {x:0, y:0};
         this.gravity = .5;
     }
 
@@ -43,9 +43,24 @@ class Sprite{
 
     }
     move(x: number, y: number):void{
+        console.log("move:", {x, y});
         this.velocity.x = x;
         this.velocity.y = y;
-        
+    }
+    moveUp(){
+        this.velocity.y = -1;
+        console.log(this.velocity.y)
+    }
+    moveDown(){
+        this.velocity.y = 1;
+        console.log(this.velocity.y);
+    }
+    moveLeft(){
+        this.velocity.x = -1;
+        console.log( this.velocity.x );
+    }
+    moveRight(){
+        this.velocity.x = 1;
     }
 }
 
