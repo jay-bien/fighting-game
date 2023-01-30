@@ -13,4 +13,18 @@ canvas.width = canvasWidth;
 canvas.height = canvasHeight;
 context.fillRect(0, 0, canvasWidth, canvasHeight);
 
-const player = new Sprite(0, 0, 10, 30, []);
+const player = new Sprite({x:0, y:0, height:10, width:30, polygon:[]});
+const enemy = new Sprite({x:0, y:0, height:10, width:30, polygon:[]});
+player.draw( context );
+enemy.draw( context );
+
+function gameLoop(){
+    console.log("Loop");
+    player.move();
+    player.draw( context );
+    enemy.move();
+    enemy.draw( context );
+    window.requestAnimationFrame( gameLoop );
+}
+
+gameLoop();

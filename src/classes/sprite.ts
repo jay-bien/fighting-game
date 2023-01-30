@@ -2,22 +2,40 @@ import { Context } from "vm"
 
 
 class Sprite{
-    position: IPosition
-    constructor( private x: number, private y: number, private width:number, private height:number, private polygon:number[] ){
-        this.x =x;
-        this.y=y;
-        this.width=width;
-        this.height=height;
-        this.polygon = polygon;
+    position: IPosition;
+
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    polygon: number[];
+    velocity: {x:number, y:number};
+    gravity: number;
+    constructor( arg: {x: number, y: number, width:number, height:number,  polygon:number[], velocity?:{x:1, y:1} }){
+        this.x = arg.x;
+        this.y= arg.y;
+        this.width=arg.width;
+        this.height=arg.height;
+        this.polygon = arg.polygon;
+        this.velocity = arg.velocity || {x:1, y:1};
+        this.gravity = 1;
     }
 
 
     draw( ctx: Context ){
+        ctx.fillStyle = "red";
+        ctx.fillRect(this.x, this.y, this.width, this.height );
 
     }
 
     update(){
-
+        
+    }
+    move(){
+        const position ={x:this.x,y:this.y}
+        console.log({position} );
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
     }
 }
 
