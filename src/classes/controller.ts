@@ -1,9 +1,9 @@
 class Controller{
     private control_type: string;
-    up: Boolean;
-    down: Boolean;
-    right: Boolean;
-    left: Boolean;
+    up: Boolean = false;
+    down: Boolean = false;
+    right: Boolean = false;
+    left: Boolean = false;
 
     constructor( control_type: PlayerType){
         this.control_type = control_type;
