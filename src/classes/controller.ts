@@ -1,16 +1,13 @@
-import { Sprite } from "./sprite.js";
 class Controller{
     private control_type: string;
-    private up: Boolean;
-    private down: Boolean;
-    private right: Boolean;
-    private left: Boolean;
-    private player: Sprite;
+    up: Boolean;
+    down: Boolean;
+    right: Boolean;
+    left: Boolean;
 
-    constructor( control_type: PlayerType, player: Sprite){
+    constructor( control_type: PlayerType){
         this.control_type = control_type;
         this.attachKeyboardListeners( control_type );
-        this.player = player;
     }
 
     private attachKeyboardListeners( player_type: PlayerType ): void{
@@ -21,13 +18,13 @@ class Controller{
 
             if(player_type === "player1"){
                 switch( event.key ){
-                    case "w": this.player.moveUp();
+                    case "w": this.up = true;
                     break;
-                    case "a": this.player.moveLeft();
+                    case "a": this.left = true;
                     break;
-                    case "s": this.player.moveDown();
+                    case "s": this.down = true;
                     break;
-                    case "d": this.player.moveRight();
+                    case "d": this.right = true;
                     break;
                     default:
                         break;
@@ -36,13 +33,13 @@ class Controller{
             } else{
 
                 switch( event.key ){
-                    case "ArrowUp": this.player.moveUp();
+                    case "ArrowUp": this.up = true;
                     break;
-                    case "ArrowLeft": this.player.moveLeft();
+                    case "ArrowLeft": this.left = true;
                     break;
-                    case "ArrowDown": this.player.moveDown();
+                    case "ArrowDown": this.down = true;
                     break;
-                    case "ArrowRight": this.player.moveRight();
+                    case "ArrowRight": this.right = true;
                     break;
                 }
 
@@ -57,13 +54,13 @@ class Controller{
 
             if(player_type === "player1"){
                 switch( event.key ){
-                    case "w": this.player.moveUp( true);
+                    case "w": this.up = false;
                     break;
-                    case "a": this.player.moveLeft( true);
+                    case "a": this.left = false;
                     break;
-                    case "s": this.player.moveDown( true);
+                    case "s": this.down = false;
                     break;
-                    case "d": this.player.moveRight( true);
+                    case "d": this.right = false;
                     break;
                     default:
                         break;
@@ -72,13 +69,13 @@ class Controller{
             } else{
 
                 switch( event.key ){
-                    case "ArrowUp": this.player.moveUp( true);
+                    case "ArrowUp": this.up = false;
                     break;
-                    case "ArrowLeft": this.player.moveLeft( true);
+                    case "ArrowLeft": this.left = false;
                     break;
-                    case "ArrowDown": this.player.moveDown( true);
+                    case "ArrowDown": this.down = false;
                     break;
-                    case "ArrowRight": this.player.moveRight( true);
+                    case "ArrowRight": this.right = false;
                     break;
                 }
 

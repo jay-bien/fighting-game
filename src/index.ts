@@ -14,10 +14,11 @@ canvas.width = canvasWidth;
 canvas.height = canvasHeight;
 context.fillRect(0, 0, canvasWidth, canvasHeight);
 
-const player = new Sprite({x:0, y:0, height:10, width:30, polygon:[]});
-const enemy = new Sprite({x:0, y:0, height:10, width:30, polygon:[]});
-const player1_controls = new Controller("player1", player);
-const player2_controls = new Controller("player2", enemy);
+
+const player1_controller = new Controller("player1");
+const player2_controller = new Controller("player2");
+const player = new Sprite({x:0, y:0, height:10, width:30, polygon:[], controls: player1_controller});
+const enemy = new Sprite({x:0, y:0, height:10, width:30, polygon:[], controls: player2_controller});
 player.draw( context );
 enemy.draw( context );
 
