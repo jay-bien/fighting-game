@@ -47,20 +47,25 @@ class Sprite{
         this.velocity.x = x;
         this.velocity.y = y;
     }
-    moveUp(){
-        this.velocity.y = -1;
-        console.log(this.velocity.y)
+    moveUp( cancel: boolean = false){
+        cancel 
+        ? this.velocity.y = 0
+        : this.velocity.y = -1;
     }
-    moveDown(){
-        this.velocity.y = 1;
-        console.log(this.velocity.y);
+    moveDown( cancel:boolean = false ){
+        cancel 
+        ? this.velocity.y = 0
+        : this.velocity.y = 1;
     }
-    moveLeft(){
-        this.velocity.x = -1;
-        console.log( this.velocity.x );
+    moveLeft( cancel:boolean = false ){
+        cancel 
+        ? this.velocity.x = 0
+        : this.velocity.x = -1;
     }
-    moveRight(){
-        this.velocity.x = 1;
+    moveRight( cancel:boolean = false){
+        cancel 
+        ? this.velocity.x = 0
+        : this.velocity.x = 1;
     }
 }
 

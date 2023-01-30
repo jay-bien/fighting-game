@@ -49,6 +49,44 @@ class Controller{
             }
 
         })
+
+        document.addEventListener('keyup', (event:KeyboardEvent)=> {
+            event.preventDefault();
+
+            if(player_type !== "player1" && player_type !== "player2") return;
+
+            if(player_type === "player1"){
+                switch( event.key ){
+                    case "w": this.player.moveUp( true);
+                    break;
+                    case "a": this.player.moveLeft( true);
+                    break;
+                    case "s": this.player.moveDown( true);
+                    break;
+                    case "d": this.player.moveRight( true);
+                    break;
+                    default:
+                        break;
+                }
+                
+            } else{
+
+                switch( event.key ){
+                    case "ArrowUp": this.player.moveUp( true);
+                    break;
+                    case "ArrowLeft": this.player.moveLeft( true);
+                    break;
+                    case "ArrowDown": this.player.moveDown( true);
+                    break;
+                    case "ArrowRight": this.player.moveRight( true);
+                    break;
+                }
+
+            }
+
+        })
+
+
     }
 
 }
