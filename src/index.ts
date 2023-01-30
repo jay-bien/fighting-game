@@ -20,10 +20,14 @@ enemy.draw( context );
 
 function gameLoop(){
     console.log("Loop");
-    player.move();
-    player.draw( context );
-    enemy.move();
-    enemy.draw( context );
+
+    context.fillStyle = "black";
+    context.fillRect(0, 0, canvasWidth, canvasHeight);
+
+    player.move(canvas, context);
+    player.update( context );
+    enemy.move(canvas, context );
+    enemy.update( context );
     window.requestAnimationFrame( gameLoop );
 }
 
