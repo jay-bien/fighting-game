@@ -7,8 +7,14 @@ const context = canvas.getContext('2d');
 const defaultSettings = {
   canvasWidth: 1024,
   canvasHeight: 576,
+  playerHeight: 150,
+  enemyHeight: 150,
+  playerStartingPos: 100,
+  enemyStartingPos: 1024 - 100
 };
-const { canvasWidth, canvasHeight } = defaultSettings;
+const { canvasWidth, canvasHeight, playerHeight, enemyHeight,
+        playerStartingPos, enemyStartingPos,
+} = defaultSettings;
 
 canvas.width = canvasWidth;
 canvas.height = canvasHeight;
@@ -17,8 +23,8 @@ context.fillRect(0, 0, canvasWidth, canvasHeight);
 
 const player1_controller = new Controller("player1");
 const player2_controller = new Controller("player2");
-const player = new Sprite({x:0, y:0, height:10, width:30, polygon:[], controls: player1_controller});
-const enemy = new Sprite({x:0, y:0, height:10, width:30, polygon:[], controls: player2_controller});
+const player = new Sprite({x:playerStartingPos, y:canvasHeight-playerHeight, height:playerHeight, width:30, polygon:[], controls: player1_controller});
+const enemy = new Sprite({x:enemyStartingPos, y:canvasHeight-enemyHeight, height:enemyHeight, width:30, polygon:[], controls: player2_controller});
 player.draw( context );
 enemy.draw( context );
 
