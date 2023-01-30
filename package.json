@@ -1,0 +1,27 @@
+{
+  "name": "fighting-game",
+  "version": "1.0.0",
+  "description": "Fighting game. Typescript, Javascript, HTML, CSS, Canvas",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jay-bien/fighting-game.git"
+  },
+  "keywords": [],
+  "author": "Jay Bien-aimé",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jay-bien/fighting-game/issues"
+  },
+  "homepage": "https://github.com/jay-bien/fighting-game#readme",
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "typescript": "^4.9.4"
+  }
+}
