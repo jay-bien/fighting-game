@@ -43,27 +43,6 @@ class Sprite{
         if( this.width + this.x + this.velocity.x < canvas.width && this.x  + this.velocity.x > 0 )this.x += this.velocity.x;
         this.draw( ctx );
     }
-
-    moveUp( cancel: boolean = false){
-        cancel 
-        ? this.velocity.y = 0
-        : this.velocity.y = -1;
-    }
-    moveDown( cancel:boolean = false ){
-        cancel 
-        ? this.velocity.y = 0
-        : this.velocity.y = 1;
-    }
-    moveLeft( cancel:boolean = false ){
-        cancel 
-        ? this.velocity.x = 0
-        : this.velocity.x = -1;
-    }
-    moveRight( cancel:boolean = false){
-        cancel 
-        ? this.velocity.x = 0
-        : this.velocity.x = 1;
-    }
 }
 
 interface IPosition{

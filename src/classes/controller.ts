@@ -13,9 +13,7 @@ class Controller{
     private attachKeyboardListeners( player_type: PlayerType ): void{
         document.addEventListener('keydown', (event:KeyboardEvent)=> {
             event.preventDefault();
-
             if(player_type !== "player1" && player_type !== "player2") return;
-
             if(player_type === "player1"){
                 switch( event.key ){
                     case "w": this.up = true;
@@ -29,9 +27,7 @@ class Controller{
                     default:
                         break;
                 }
-                
             } else{
-
                 switch( event.key ){
                     case "ArrowUp": this.up = true;
                     break;
@@ -42,16 +38,12 @@ class Controller{
                     case "ArrowRight": this.right = true;
                     break;
                 }
-
             }
-
         })
 
         document.addEventListener('keyup', (event:KeyboardEvent)=> {
             event.preventDefault();
-
             if(player_type !== "player1" && player_type !== "player2") return;
-
             if(player_type === "player1"){
                 switch( event.key ){
                     case "w": this.up = false;
@@ -65,9 +57,7 @@ class Controller{
                     default:
                         break;
                 }
-                
             } else{
-
                 switch( event.key ){
                     case "ArrowUp": this.up = false;
                     break;
@@ -78,14 +68,9 @@ class Controller{
                     case "ArrowRight": this.right = false;
                     break;
                 }
-
             }
-
         })
-
-
     }
-
 }
 
 
