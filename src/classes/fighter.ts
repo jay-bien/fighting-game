@@ -11,10 +11,11 @@ class Fighter extends Sprite {
     private controller: Controller;
     private jumpStrength: number;
     private attackBox:{width:number, height:number, x:number, y:number}
+    private attacking: boolean = false;
 
 
     constructor( arg: {x: number, y: number, width:number, height:number,  
-        polygon:number[], velocity?:{x:number, y:number}, controls: Controller
+        polygon:number[], velocity?:{x:number, y:number}, controls: Controller,
     }){
         super(arg)
 
@@ -27,6 +28,7 @@ class Fighter extends Sprite {
         this.attackBox = {width:100, height:40, x:this.x, y:this.y}
 
     }
+
     draw( ctx: CanvasRenderingContext2D ): void{
         ctx.fillStyle = "red";
         ctx.fillRect(this.x, this.y, this.width, this.height );
@@ -36,7 +38,6 @@ class Fighter extends Sprite {
         ctx.fillRect(this.attackBox.x, this.attackBox.y, this.attackBox.width, this.attackBox.height);
 
     }
-
     update( canvas:HTMLCanvasElement, ctx: CanvasRenderingContext2D ): void{
 
         this.velocity.y = 0;
@@ -44,6 +45,8 @@ class Fighter extends Sprite {
         if( this.controller.right && ! this.controller.left ) this.velocity.x = 10;  
         if( this.controller.left && !this.controller.right ) this.velocity.x = -10;
         if(! this.controller.left && !this.controller.right ) this.velocity.x = 0;
+        
+        
         
         // always make player return to ground by addingg gravity amount or difference between player y and ground
         if( this.y + this.height < canvas.height){
@@ -55,10 +58,19 @@ class Fighter extends Sprite {
             this.y += this.velocity.y
         } 
         if( this.width + this.x + this.velocity.x < canvas.width && this.x  + this.velocity.x > 0 )this.x += this.velocity.x;
+        
+        if( this.controller.down ){
+            this.attacking = true;
+        } else {
+            this.attacking = false;
+        }
         this.attackBox.x = this.x;
         this.attackBox.y = this.y;
         this.draw( ctx );
+    }
 
+    isAttacking(): boolean{
+        return this.attacking
     }
 
 }

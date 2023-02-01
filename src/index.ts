@@ -1,6 +1,7 @@
 import { Sprite } from './classes/sprite.js';
 import { Controller } from './classes/controller.js';
-import { Fighter } from './classes/fighter.js'
+import { Fighter } from './classes/fighter.js';
+import { Combat } from './classes/combat.js';
 
 const appDiv: HTMLElement = document.getElementById('app');
 const canvas: HTMLCanvasElement = document.querySelector('canvas');
@@ -29,11 +30,13 @@ const enemy = new Fighter({x:enemyStartingPos, y:canvasHeight-enemyHeight-300, h
 player.draw( context );
 enemy.draw( context );
 console.log(player);
+const combat = new Combat( player, enemy );
 function gameLoop(){
     context.fillStyle = "black";
     context.fillRect(0, 0, canvasWidth, canvasHeight);
     player.update( canvas,context );
     enemy.update(canvas, context );
+    combat.update();
     window.requestAnimationFrame( gameLoop );
 }
 
