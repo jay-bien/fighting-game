@@ -1,64 +1,21 @@
-import { Context } from "vm"
-import { Controller } from "./controller.js";
-
 class Sprite{
     position: IPosition;
-
-    private x: number;
-    private y: number;
-    private width: number;
-    private height: number;
-    private polygon: number[];
-    public velocity: {x:number, y:number};
-    private gravity: number;
-    private controller: Controller;
-    private jumpStrength: number;
-    private lastJump: number;
-    constructor( arg: {x: number, y: number, width:number, height:number,  
-        polygon:number[], velocity?:{x:number, y:number}, controls: Controller
-    }){
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    constructor( arg: {x: number, y: number, width:number, height:number,  }){
         this.x = arg.x;
         this.y= arg.y;
         this.width=arg.width;
         this.height=arg.height;
-        this.polygon = arg.polygon;
-        this.velocity = arg.velocity || {x:0, y:0};
-        this.gravity = 7;
-        this.controller = arg.controls;
-        this.jumpStrength = 150;
-    }
+}
 
-
-    draw( ctx: Context ): void{
+    draw( ctx: CanvasRenderingContext2D ): void{
         ctx.fillStyle = "red";
         ctx.fillRect(this.x, this.y, this.width, this.height );
-
     }
-
-    update( canvas:HTMLCanvasElement, ctx: Context ): void{
-
-        this.velocity.y = 0;
-        
-        if( this.controller.right && ! this.controller.left ) this.velocity.x = 1;  
-        if( this.controller.left && !this.controller.right ) this.velocity.x = -1;
-        if(! this.controller.left && !this.controller.right ) this.velocity.x = 0;
-        
-        // always make player return to ground by addingg gravity amount or difference between player y and ground
-        if( this.y + this.height < canvas.height){
-            this.y += Math.min(this.gravity, canvas.height - this.y+this.height)
-        }
-
-        if( this.controller.up && this.y+this.height+this.gravity>=canvas.height ) {
-            let pos = this.y + this.height;
-            let height = canvas.height;
-            console.log({pos, height});
-            console.log("Should Jump");
-            this.velocity.y -= this.jumpStrength;
-        }
-        if( this.height + this.y + this.velocity.y < canvas.height && this.y  + this.velocity.y > 0 ){
-            this.y += this.velocity.y
-        } 
-        if( this.width + this.x + this.velocity.x < canvas.width && this.x  + this.velocity.x > 0 )this.x += this.velocity.x;
+    update( canvas:HTMLCanvasElement, ctx: CanvasRenderingContext2D ): void{
         this.draw( ctx );
     }
 
