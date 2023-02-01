@@ -69,8 +69,11 @@ class Fighter extends Sprite {
         this.draw( ctx );
     }
 
-    isAttacking(): boolean{
+    isAttacking(): Boolean  {
         return this.attacking
+    }
+    getAttackRange():{x: number, y:number, width:number, height: number}{
+        return this.attackBox;
     }
 
 }
