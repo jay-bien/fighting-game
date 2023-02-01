@@ -23,8 +23,8 @@ context.fillRect(0, 0, canvasWidth, canvasHeight);
 
 const player1_controller = new Controller("player1");
 const player2_controller = new Controller("player2");
-const player = new Sprite({x:playerStartingPos, y:canvasHeight-playerHeight, height:playerHeight, width:30, polygon:[], controls: player1_controller});
-const enemy = new Sprite({x:enemyStartingPos, y:canvasHeight-enemyHeight, height:enemyHeight, width:30, polygon:[], controls: player2_controller});
+const player = new Sprite({x:playerStartingPos, y:canvasHeight-playerHeight-300, height:playerHeight, width:30, polygon:[], controls: player1_controller});
+const enemy = new Sprite({x:enemyStartingPos, y:canvasHeight-enemyHeight-300, height:enemyHeight, width:30, polygon:[], controls: player2_controller});
 player.draw( context );
 enemy.draw( context );
 

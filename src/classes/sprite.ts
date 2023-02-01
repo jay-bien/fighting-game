@@ -23,9 +23,9 @@ class Sprite{
         this.height=arg.height;
         this.polygon = arg.polygon;
         this.velocity = arg.velocity || {x:0, y:0};
-        this.gravity = 3;
+        this.gravity = 7;
         this.controller = arg.controls;
-        this.jumpStrength = 15;
+        this.jumpStrength = 150;
     }
 
 
@@ -36,20 +36,32 @@ class Sprite{
     }
 
     update( canvas:HTMLCanvasElement, ctx: Context ): void{
-        if( this.controller.right && ! this.controller.left ) this.velocity.x = 1;
+
+        this.velocity.y = 0;
+        
+        if( this.controller.right && ! this.controller.left ) this.velocity.x = 1;  
         if( this.controller.left && !this.controller.right ) this.velocity.x = -1;
         if(! this.controller.left && !this.controller.right ) this.velocity.x = 0;
+        
+        // always make player return to ground by addingg gravity amount or difference between player y and ground
+        if( this.y + this.height < canvas.height){
+            this.y += Math.min(this.gravity, canvas.height - this.y+this.height)
+        }
 
-
+        if( this.controller.up && this.y+this.height+this.gravity>=canvas.height ) {
+            let pos = this.y + this.height;
+            let height = canvas.height;
+            console.log({pos, height});
+            console.log("Should Jump");
+            this.velocity.y -= this.jumpStrength;
+        }
         if( this.height + this.y + this.velocity.y < canvas.height && this.y  + this.velocity.y > 0 ){
             this.y += this.velocity.y
         } 
         if( this.width + this.x + this.velocity.x < canvas.width && this.x  + this.velocity.x > 0 )this.x += this.velocity.x;
         this.draw( ctx );
     }
-    jump(){
 
-    }
 }
 
 interface IPosition{

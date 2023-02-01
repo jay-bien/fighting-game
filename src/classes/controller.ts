@@ -4,6 +4,7 @@ class Controller{
     down: Boolean = false;
     right: Boolean = false;
     left: Boolean = false;
+    lastKey: String| null = null;
 
     constructor( control_type: PlayerType){
         this.control_type = control_type;
@@ -16,7 +17,8 @@ class Controller{
             if(player_type !== "player1" && player_type !== "player2") return;
             if(player_type === "player1"){
                 switch( event.key ){
-                    case "w": this.up = true;
+                    case "w": 
+                        this.up = true; this.lastKey="w";
                     break;
                     case "a": this.left = true;
                     break;
@@ -29,7 +31,8 @@ class Controller{
                 }
             } else{
                 switch( event.key ){
-                    case "ArrowUp": this.up = true;
+                    case "ArrowUp": 
+                        this.up = true; this.lastKey="ArrowUp";
                     break;
                     case "ArrowLeft": this.left = true;
                     break;
@@ -41,12 +44,14 @@ class Controller{
             }
         })
 
+  
+
         document.addEventListener('keyup', (event:KeyboardEvent)=> {
             event.preventDefault();
             if(player_type !== "player1" && player_type !== "player2") return;
             if(player_type === "player1"){
                 switch( event.key ){
-                    case "w": this.up = false;
+                    case "w": this.up = false; this.lastKey= null;
                     break;
                     case "a": this.left = false;
                     break;
@@ -59,7 +64,7 @@ class Controller{
                 }
             } else{
                 switch( event.key ){
-                    case "ArrowUp": this.up = false;
+                    case "ArrowUp": this.up = false; this.lastKey = null;
                     break;
                     case "ArrowLeft": this.left = false;
                     break;
