@@ -12,14 +12,16 @@ class Fighter extends Sprite {
     private jumpStrength: number;
     private attackBox:{width:number, height:number, x:number, y:number}
     private attacking: boolean = false;
-    private sprite: ISprite;
+    private spriteProps: ISprite;
     private spriteImg: HTMLImageElement;
+    private sprite: Sprite
 
 
     constructor( arg: {x: number, y: number, width:number, height:number,  
         polygon:number[], velocity?:{x:number, y:number}, controls: Controller,
+        spriteSrc: string
     }){
-        super();
+        super({ x:arg.x, y:arg.y, width: arg.width, height: arg.height  });
 
         this.velocity = arg.velocity || {x:0, y:0};
         this.controller = arg.controls;
@@ -28,18 +30,17 @@ class Fighter extends Sprite {
         this.jumpStrength = 150;
         this.gravity = 7;
         this.attackBox = {width:100, height:40, x:this.x, y:this.y}
-        const sailor_jupiter_sprite = new Image();
-        sailor_jupiter_sprite.src = "./dist/assets/sprites/jupiter.png";
-        this.spriteImg = sailor_jupiter_sprite;
+        this.spriteImg  = new Image();
+        this.spriteImg.src = arg.spriteSrc;
+        
     }
 
     draw( ctx: CanvasRenderingContext2D ): void{
-        ctx.fillStyle = "red";
-        ctx.fillRect(this.x, this.y, this.width, this.height );
+        // ctx.fillStyle = "red";
+        // ctx.fillRect(this.x, this.y, this.width, this.height );
         if( this.spriteImg ){
-
-            const jupiter_sprite = new Sprite();
-            jupiter_sprite.draw( ctx, this.spriteImg, 0, 0, 45, 120, 700 - 100, 100, 46, 120);
+            console.log("Draw the sprite", this.x, this.y );
+            super.draw( ctx, this.spriteImg, 0, 0, 45, 120, this.x, this.y, this.width, this.height);
         }
         // draw attack box
         ctx.fillStyle = "purple";
@@ -82,9 +83,7 @@ class Fighter extends Sprite {
     getAttackRange():{x: number, y:number, width:number, height: number}{
         return this.attackBox;
     }
-    setSprite(sprite: ISprite){
-        this.sprite = sprite;
-    }
+
 }
 
 export  { 
