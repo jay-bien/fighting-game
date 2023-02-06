@@ -12,6 +12,8 @@ class Fighter extends Sprite {
     private jumpStrength: number;
     private attackBox:{width:number, height:number, x:number, y:number}
     private attacking: boolean = false;
+    private sprite: ISprite;
+    private spriteImg: HTMLImageElement;
 
 
     constructor( arg: {x: number, y: number, width:number, height:number,  
@@ -26,20 +28,25 @@ class Fighter extends Sprite {
         this.jumpStrength = 150;
         this.gravity = 7;
         this.attackBox = {width:100, height:40, x:this.x, y:this.y}
-
+        const sailor_jupiter_sprite = new Image();
+        sailor_jupiter_sprite.src = "./dist/assets/sprites/jupiter.png";
+        this.spriteImg = sailor_jupiter_sprite;
     }
 
     draw( ctx: CanvasRenderingContext2D ): void{
         ctx.fillStyle = "red";
         ctx.fillRect(this.x, this.y, this.width, this.height );
+        if( this.spriteImg ){
 
+            const jupiter_sprite = new Sprite();
+            jupiter_sprite.draw( ctx, this.spriteImg, 0, 0, 45, 120, 700 - 100, 100, 46, 120);
+        }
         // draw attack box
         ctx.fillStyle = "purple";
         ctx.fillRect(this.attackBox.x, this.attackBox.y, this.attackBox.width, this.attackBox.height);
 
     }
     update( canvas:HTMLCanvasElement, ctx: CanvasRenderingContext2D ): void{
-
         this.velocity.y = 0;
         
         if( this.controller.right && ! this.controller.left ) this.velocity.x = 10;  
@@ -75,9 +82,35 @@ class Fighter extends Sprite {
     getAttackRange():{x: number, y:number, width:number, height: number}{
         return this.attackBox;
     }
-
+    setSprite(sprite: ISprite){
+        this.sprite = sprite;
+    }
 }
 
 export  { 
     Fighter
+}
+
+interface ISprite{
+    src: string,
+    animations:{
+        idle:{
+            sprites:[]
+        },
+        walk:{
+            sprites:[]
+        },
+        run:{
+            sprites:[]
+        },
+        jump:{
+            sprites:[]
+        },
+        fall:{
+            sprites:[]
+        },
+        attack:{
+            sprites:[]
+        }
+    }
 }
