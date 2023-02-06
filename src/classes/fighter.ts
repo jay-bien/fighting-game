@@ -17,7 +17,7 @@ class Fighter extends Sprite {
     constructor( arg: {x: number, y: number, width:number, height:number,  
         polygon:number[], velocity?:{x:number, y:number}, controls: Controller,
     }){
-        super(arg)
+        super();
 
         this.velocity = arg.velocity || {x:0, y:0};
         this.controller = arg.controls;

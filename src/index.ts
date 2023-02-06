@@ -31,11 +31,21 @@ player.draw( context );
 enemy.draw( context );
 console.log(player);
 const combat = new Combat( player, enemy );
+
+const sailor_jupiter_sprite = new Image();
+sailor_jupiter_sprite.src = "./dist/assets/sprites/jupiter.png";
+const jupiter_sprite = new Sprite();
+
+
+
+
+
 function gameLoop(){
     context.fillStyle = "black";
     context.fillRect(0, 0, canvasWidth, canvasHeight);
     player.update( canvas,context );
     enemy.update(canvas, context );
+    jupiter_sprite.draw( context, sailor_jupiter_sprite, 0, 0, 45, 120, canvasHeight - 100, 100, 46, 120);
     combat.update();
     window.requestAnimationFrame( gameLoop );
 }
